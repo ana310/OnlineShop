@@ -1,0 +1,31 @@
+<h2> <%= @product.name %> </h2>
+
+<h4> Description: </h4>
+<p> <%= @product.description %> </p>
+
+<h4> Variants: </h4>
+
+<ul>
+  <% @variants.each do |variant| %>
+    <li>
+      Price: <%= variant.price %>
+    </li>
+    <li>
+      Quantity: <%= variant.quantity %>
+    </li>
+    <%= link_to "Buy", products_path %>
+  <% end %>
+</ul>
+
+<h3> Comments: </h3>
+
+<ul>
+  <% @comments.each do |comment| %>
+    <h4> <%= @current_buyer.username %> said: </h4>
+    <p>
+      <%= comment.text %>
+    </p>
+  <% end %>
+</ul>
+
+<%= render "form" %>

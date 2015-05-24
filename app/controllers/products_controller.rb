@@ -7,4 +7,10 @@ class ProductsController < ApplicationController
       @products = Channel.find(params[:channel]).products.all
     end
   end
+
+  def show
+    @product = Product.find(params[:id])
+    @variants = @product.variants.all
+    @comments = @product.comments.all
+  end
 end
