@@ -8,8 +8,13 @@
 
 <ul>
 	<% @products.each do |product| %>
-	<li>
-		<%= product.name %>
-	</li>
-	<% end %>
+      <strong> <%= product.name %> </strong>
+      <li>
+    		Price: <%= product.variants.order(price: :desc).last.price %>
+      </li>
+      <li>
+        Quantity: <%= product.variants.order(price: :desc).last.quantity %>
+    	</li>
+      <br>
+  <% end %>
 </ul>

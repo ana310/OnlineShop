@@ -12,3 +12,12 @@
 #     c.products.create(name: "Product ##{j} of channel ##{i}", description: "A product.", active: "Wat")
 #   end
 # end
+
+
+p = Product.all
+
+p.each do |product|
+  for i in 1..4
+    product.variants.create(quantity: i + 5 + product.id, price: i * 10 + product.id)
+  end
+end
