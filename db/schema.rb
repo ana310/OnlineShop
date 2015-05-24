@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150524094703) do
+ActiveRecord::Schema.define(version: 20150524110122) do
 
   create_table "buyers", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150524094703) do
     t.string   "active",      limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "channel_id",  limit: 4
   end
 
   create_table "variants", force: :cascade do |t|
