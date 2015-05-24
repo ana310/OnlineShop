@@ -1,5 +1,11 @@
 <h1> Index </h1>
 
+<span>
+  <% @channels.each do |channel| %>
+      <%= link_to channel.name, controller: "products", channel: channel.id %>
+  <% end %>
+</span>
+
 <ul>
 	<% @products.each do |product| %>
 	<li>
