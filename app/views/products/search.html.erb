@@ -1,0 +1,17 @@
+<h2> Query result: </h2>
+
+<ul>
+  <% @products.each do |product| %>
+    <h4> <%= product.name %> </h4>
+    <li>
+      Price: <%= product.variants.order(price: :asc).first.price %>
+    </li>
+    <li>
+      Quantity: <%= product.variants.order(price: :asc).first.quantity %>
+    </li>
+    <%= link_to('Buy', product_path(product.id)) %>
+    <br>
+  <% end %>
+</ul>
+
+<%= link_to('Index', products_path) %>

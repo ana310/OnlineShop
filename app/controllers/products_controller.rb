@@ -8,6 +8,14 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    if(params[:q].blank?)
+			@products = Product.all
+		else
+			@products = Product.where("name like '%" + params[:q] + "%'")
+		end
+  end
+
   def show
     @product = Product.find(params[:id])
     @variants = @product.variants.all

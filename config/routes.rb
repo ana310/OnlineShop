@@ -5,10 +5,14 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  get '/products/search', to: 'products#search'
 
   resources :products do
     resources :comments
   end
+
+
+
 
   root 'products#index'
 

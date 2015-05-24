@@ -1,4 +1,12 @@
+
+
 <h1> Index </h1>
+
+<%= form_tag("/products/search", method: "get", class: "search") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
 
 <span>
   <% @channels.each do |channel| %>
@@ -15,7 +23,15 @@
       <li>
         Quantity: <%= product.variants.order(price: :desc).last.quantity %>
     	</li>
-      <%= link_to_if(@current_user.nil?, "Buy", product_path(product.id)) %>
+      <% if buyer_signed_in? %>
+        <%= link_to('Buy', product_path(product.id)) %>
+      <% end %>
       <br>
   <% end %>
 </ul>
+
+<% if buyer_signed_in? %>
+  <%= link_to('Sign out!', destroy_buyer_session_path, :method => :delete) %>
+<% else %>
+  <%= link_to('Sign in!', new_buyer_session_path) %>
+<% end %>

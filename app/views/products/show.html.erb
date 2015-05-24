@@ -21,7 +21,7 @@
 
 <ul>
   <% @comments.each do |comment| %>
-    <h4> <%= @current_buyer.username %> said: </h4>
+    <h4> <%= comment.user_name %> said: </h4>
     <p>
       <%= comment.text %>
     </p>
