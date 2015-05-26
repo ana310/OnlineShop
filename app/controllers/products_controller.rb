@@ -21,4 +21,17 @@ class ProductsController < ApplicationController
     @variants = @product.variants.all
     @comments = @product.comments.all
   end
+
+  def buy
+    @variant = Variant.find(params[:id])
+
+    if @newOrder.defined?
+      @newOrder.variants << @variant
+    else
+      @newOrder = Order.new(buyer_id: current_buyer.id)
+      @newOrder.variants << @variant
+    end
+  end
+
+
 end

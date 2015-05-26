@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150524173727) do
+ActiveRecord::Schema.define(version: 20150526142312) do
 
   create_table "buyers", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -47,9 +47,22 @@ ActiveRecord::Schema.define(version: 20150524173727) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "buyer_id",   limit: 4
+    t.integer  "variant_id", limit: 4
   end
+
+  create_table "orders_has_variants", force: :cascade do |t|
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "order_id",   limit: 4
+    t.integer  "variant_id", limit: 4
+  end
+
+  add_index "orders_has_variants", ["order_id", "variant_id"], name: "index_orders_has_variants_on_order_id_and_variant_id", unique: true, using: :btree
+  add_index "orders_has_variants", ["order_id"], name: "index_orders_has_variants_on_order_id", using: :btree
+  add_index "orders_has_variants", ["variant_id"], name: "index_orders_has_variants_on_variant_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -66,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150524173727) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "product_id", limit: 4
+    t.integer  "order_id",   limit: 4
   end
 
 end

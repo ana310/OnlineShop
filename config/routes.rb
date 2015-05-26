@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   get '/products/search', to: 'products#search'
+  get '/products/buy/:variant_id', to: 'products#buy'
 
   resources :products do
     resources :comments
