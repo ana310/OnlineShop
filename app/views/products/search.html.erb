@@ -9,7 +9,9 @@
     <li>
       Quantity: <%= product.variants.order(price: :asc).first.quantity %>
     </li>
-    <%= link_to('Buy', product_path(product.id)) %>
+    <% if buyer_signed_in? %>
+      <%= link_to 'Buy', action: "buy", variant_id: product.variants.order(price: :desc).last.id %>
+    <% end %>
     <br>
   <% end %>
 </ul>

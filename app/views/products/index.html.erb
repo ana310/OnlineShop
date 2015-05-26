@@ -12,11 +12,12 @@
   <% @channels.each do |channel| %>
       <%= link_to channel.name, controller: "products", channel: channel.id %>
   <% end %>
+  <%= link_to "Pay", "/orders/current" %>
 </span>
 
 <ul>
 	<% @products.each do |product| %>
-      <strong> <%= product.name %> </strong>
+      <strong> <%= link_to product.name, product_path(product.id) %> </strong>
       <li>
     		Price: <%= product.variants.order(price: :desc).last.price %>
       </li>

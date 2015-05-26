@@ -1,3 +1,22 @@
 <h3> Current Order </h3>
 
-<p> <%= @newOrder %> </p>
+
+<ul>
+  <% @variantsToBuy.each do |variant| %>
+  <li>
+    Product: <%= Product.find(variant.product_id).name %>
+  </li>
+  <li>
+    Price: <%= variant.price %>
+    <% @totalPrice += variant.price %>
+  </li>
+  <% end %>
+  <br>
+  <li>
+    Total: <%= @totalPrice %>
+  </li>
+</ul>
+
+<%= button_to "Pay", action: "pay" %>
+
+<%= link_to "Back", products_path %>

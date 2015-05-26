@@ -23,14 +23,19 @@ class ProductsController < ApplicationController
   end
 
   def buy
-    @variant = Variant.find(params[:id])
+    s = Set.new
 
-    if @newOrder.defined?
-      @newOrder.variants << @variant
-    else
-      @newOrder = Order.new(buyer_id: current_buyer.id)
-      @newOrder.variants << @variant
+
+    if !session[:variant_ids].nil?
+      session[:variant_ids].each do |id|
+        s << id
+      end
     end
+
+    s << params[:variant_id]
+    session[:variant_ids] = s
+
+    redirect_to "/orders/current"
   end
 
 

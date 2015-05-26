@@ -13,7 +13,9 @@
     <li>
       Quantity: <%= variant.quantity %>
     </li>
-    <%= link_to "Buy", products_path %>
+    <% if buyer_signed_in? %>
+      <%= link_to 'Buy', action: "buy", variant_id: variant.id %>
+    <% end %>
   <% end %>
 </ul>
 

@@ -1,0 +1,14 @@
+<h3> Orders </h3>
+
+<ul>
+  <% @orders.each do |order| %>
+    <h4> Order ID: <%= order.id %> </h4>
+      <% order.variants.each do |variant| %>
+        <li> Product: <%= Product.find(variant.product_id).name %> </li>
+        <li> Price: <%= variant.price %> </li>
+      <% end %>
+  <% end %>
+  <br>
+</ul>
+
+<%= link_to "Index", products_path %>

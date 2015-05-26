@@ -7,13 +7,13 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   get '/products/search', to: 'products#search'
   get '/products/buy/:variant_id', to: 'products#buy'
+  get '/orders/current', to: 'orders#current'
+  post '/orders/current', to: 'orders#pay'
+  get '/orders', to: 'orders#index'
 
   resources :products do
     resources :comments
   end
-
-
-
 
   root 'products#index'
 
